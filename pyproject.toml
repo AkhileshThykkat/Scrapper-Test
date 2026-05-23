@@ -1,0 +1,26 @@
+[project]
+name = "whatsapp-crm-review-intelligence"
+version = "0.1.0"
+description = "MVP system that scrapes Google Reviews for WhatsApp CRM companies and uses AI to generate insights"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy[asyncio]",
+    "asyncpg",
+    "alembic",
+    "pydantic",
+    "pydantic-settings",
+    "redis",
+    "celery",
+    "playwright",
+    "openai",
+    "sentence-transformers",
+    "scikit-learn",
+    "numpy",
+    "pandas",
+    "beautifulsoup4",
+    "lxml",
+    "httpx",
+]
