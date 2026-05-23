@@ -72,6 +72,11 @@ Run these three commands in **separate terminals**:
 uv run celery -A app.workers.celery_app worker -Q scrape_queue,analysis_queue -E --loglevel=info
 ```
 
+> **Windows users:** If you see `PermissionError: [WinError 5] Access is denied` in worker logs, add `--pool=solo`:
+> ```bash
+> uv run celery -A app.workers.celery_app worker -Q scrape_queue,analysis_queue -E --loglevel=info --pool=solo
+> ```
+
 ### Terminal 2 — FastAPI server
 
 ```bash
