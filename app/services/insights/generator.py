@@ -6,6 +6,8 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+
 
 async def generate_company_insights(
     company_name: str,
@@ -57,7 +59,7 @@ async def _summarize_chunk(
     chunk_num: int,
     total_chunks: int,
 ) -> str:
-    client = AsyncOpenAI(api_key=settings.openai_api_key)
+    client = AsyncOpenAI(api_key=settings.groq_api_key, base_url=GROQ_BASE_URL)
 
     reviews_text = json.dumps(chunk, indent=2)
 
@@ -76,7 +78,7 @@ async def _summarize_chunk(
 
     try:
         response = await client.chat.completions.create(
-            model=settings.openai_model,
+            model=settings.groq_model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=500,
@@ -91,7 +93,7 @@ async def _combine_summaries(company_name: str, chunk_summaries: list[str]) -> d
     if len(chunk_summaries) == 1:
         return await _extract_structured(company_name, chunk_summaries[0])
 
-    client = AsyncOpenAI(api_key=settings.openai_api_key)
+    client = AsyncOpenAI(api_key=settings.groq_api_key, base_url=GROQ_BASE_URL)
 
     combined_text = "\n\n---\n\n".join(
         f"Chunk {i+1}:\n{s}" for i, s in enumerate(chunk_summaries)
@@ -112,7 +114,7 @@ async def _combine_summaries(company_name: str, chunk_summaries: list[str]) -> d
 
     try:
         response = await client.chat.completions.create(
-            model=settings.openai_model,
+            model=settings.groq_model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=800,
@@ -131,7 +133,7 @@ async def _combine_summaries(company_name: str, chunk_summaries: list[str]) -> d
 
 
 async def _extract_structured(company_name: str, summary: str) -> dict:
-    client = AsyncOpenAI(api_key=settings.openai_api_key)
+    client = AsyncOpenAI(api_key=settings.groq_api_key, base_url=GROQ_BASE_URL)
     prompt = (
         f"Extract structured insights from this review analysis for {company_name}, "
         f"a WhatsApp CRM service.\n\n"
@@ -145,7 +147,7 @@ async def _extract_structured(company_name: str, summary: str) -> dict:
 
     try:
         response = await client.chat.completions.create(
-            model=settings.openai_model,
+            model=settings.groq_model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=800,

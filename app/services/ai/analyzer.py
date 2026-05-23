@@ -5,6 +5,8 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+
 CATEGORIES = [
     "Pricing",
     "Customer Support",
@@ -22,7 +24,7 @@ SENTIMENTS = ["positive", "negative", "mixed", "neutral"]
 
 
 async def analyze_review_text(review_text: str) -> dict:
-    client = AsyncOpenAI(api_key=settings.openai_api_key)
+    client = AsyncOpenAI(api_key=settings.groq_api_key, base_url=GROQ_BASE_URL)
 
     prompt = (
         f"Analyze the following Google Review for a WhatsApp CRM service.\n\n"
@@ -36,7 +38,7 @@ async def analyze_review_text(review_text: str) -> dict:
 
     try:
         response = await client.chat.completions.create(
-            model=settings.openai_model,
+            model=settings.groq_model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=200,
@@ -56,5 +58,5 @@ async def analyze_review_text(review_text: str) -> dict:
         return result
 
     except Exception as e:
-        logger.error("OpenAI analysis failed for review: %s", e, exc_info=True)
+        logger.error("Groq analysis failed for review: %s", e, exc_info=True)
         return {"sentiment": "neutral", "category": "General", "short_summary": review_text[:100]}

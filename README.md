@@ -6,9 +6,9 @@ Scrapes Google Reviews for WhatsApp CRM companies (Gallabox, AiSensy, Wati, Inte
 
 ```
 FastAPI ──→ Celery ──→ Playwright (scrape)
-                  ──→ OpenAI API (analyze)
+                  ──→ Groq API (analyze)
                   ──→ sentence-transformers (embeddings)
-                  ──→ OpenAI API (insights)
+                  ──→ Groq API (insights)
          ↑
     Redis (broker)
          ↓
@@ -21,7 +21,7 @@ FastAPI ──→ Celery ──→ Playwright (scrape)
 - [uv](https://docs.astral.sh/uv/) (package manager)
 - PostgreSQL 16/17
 - Redis
-- OpenAI API key
+- Groq API key (https://console.groq.com)
 
 ## Setup
 
@@ -51,8 +51,8 @@ Edit `.env`:
 |---|---|---|
 | `DATABASE_URL` | Async PostgreSQL connection string | `postgresql+asyncpg://postgres:postgres@localhost:5432/review_intel` |
 | `REDIS_URL` | Redis connection string | `redis://localhost:6379/0` |
-| `OPENAI_API_KEY` | Your OpenAI API key | `sk-...` |
-| `OPENAI_MODEL` | Model to use (optional) | `gpt-4o-mini` |
+| `GROQ_API_KEY` | Your Groq API key | `gsk-...` |
+| `GROQ_MODEL` | Model to use (optional) | `llama-3.3-70b-versatile` |
 
 ### 4. Create database
 
@@ -139,11 +139,11 @@ Store raw reviews in PostgreSQL
   ↓ (auto-enqueues)
 POST /companies/1/analyze
   ↓ (Celery: analysis_queue)
-OpenAI: sentiment + category per review
+Groq: sentiment + category per review
   ↓
 sentence-transformers: embeddings per review
   ↓
-OpenAI: chunk-level summaries → combined insight
+Groq: chunk-level summaries → combined insight
   ↓
 Store analysis + insights in PostgreSQL
 ```
@@ -172,7 +172,7 @@ app/
 ├── schemas/                   # Pydantic request/response
 ├── services/
 │   ├── scraping/              # Playwright Google Maps scraper
-│   ├── ai/                    # OpenAI analysis
+│   ├── ai/                    # Groq analysis
 │   ├── embeddings/            # sentence-transformers
 │   └── insights/              # Aggregated insights
 ├── workers/
@@ -201,4 +201,4 @@ redis-cli ping
 headless=False,  # default: True
 ```
 
-**OpenAI quota errors** — check your API key has available credits. Reduce `max_reviews_per_company` in `config.py` to test with fewer reviews.
+**Groq rate limits** — check your Groq API key has available rate limits. Reduce `max_reviews_per_company` in `config.py` to test with fewer reviews.

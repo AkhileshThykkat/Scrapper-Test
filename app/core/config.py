@@ -4,8 +4,8 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/review_intel"
     redis_url: str = "redis://localhost:6379/0"
-    openai_api_key: str = ""
-    openai_model: str = "gpt-4o-mini"
+    groq_api_key: str = ""
+    groq_model: str = "llama-3.3-70b-versatile"
     embedding_model: str = "all-MiniLM-L6-v2"
     max_reviews_per_company: int = 200
     scrape_delay_min: float = 1.0
