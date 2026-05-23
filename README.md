@@ -69,19 +69,19 @@ Run these three commands in **separate terminals**:
 ### Terminal 1 — Celery worker
 
 ```bash
-celery -A app.workers.celery_app worker -Q scrape_queue,analysis_queue -E --loglevel=info
+uv run celery -A app.workers.celery_app worker -Q scrape_queue,analysis_queue -E --loglevel=info
 ```
 
 ### Terminal 2 — FastAPI server
 
 ```bash
-uvicorn app.main:app --reload --port 8000
+uv run uvicorn app.main:app --reload --port 8000
 ```
 
 ### Terminal 3 — (optional) Flower monitoring
 
 ```bash
-celery -A app.workers.celery_app flower --port=5555
+uv run celery -A app.workers.celery_app flower --port=5555
 ```
 
 ## API Usage
