@@ -1,4 +1,6 @@
+import json
 import logging
+import re
 from openai import AsyncOpenAI
 
 from app.core.config import settings
@@ -21,6 +23,48 @@ CATEGORIES = [
 ]
 
 SENTIMENTS = ["positive", "negative", "mixed", "neutral"]
+
+
+def _extract_json(text: str) -> dict:
+    """
+    Robustly extract JSON from LLM responses that may be wrapped in
+    markdown code blocks, have extra whitespace, or contain preamble text.
+    """
+    if not text or not text.strip():
+        raise ValueError("Empty response from LLM")
+
+    # Strategy 1: Try direct parse (clean response)
+    try:
+        return json.loads(text.strip())
+    except json.JSONDecodeError:
+        pass
+
+    # Strategy 2: Extract from ```json ... ``` or ``` ... ``` blocks
+    code_block = re.search(r"```(?:json)?\s*\n?(.*?)\n?\s*```", text, re.DOTALL)
+    if code_block:
+        try:
+            return json.loads(code_block.group(1).strip())
+        except json.JSONDecodeError:
+            pass
+
+    # Strategy 3: Find the first { ... } or [ ... ] block in the text
+    brace_match = re.search(r"\{.*\}", text, re.DOTALL)
+    if brace_match:
+        try:
+            return json.loads(brace_match.group(0))
+        except json.JSONDecodeError:
+            pass
+
+    # Strategy 4: Try stripping common prefixes the model might add
+    for prefix in ["Here is the JSON:", "Here's the JSON:", "JSON:", "Response:"]:
+        if prefix.lower() in text.lower():
+            after = text[text.lower().index(prefix.lower()) + len(prefix):]
+            try:
+                return json.loads(after.strip())
+            except json.JSONDecodeError:
+                pass
+
+    raise ValueError(f"Could not extract JSON from LLM response: {text[:200]}")
 
 
 async def analyze_review_text(review_text: str) -> dict:
@@ -49,16 +93,19 @@ async def analyze_review_text(review_text: str) -> dict:
     try:
         response = await client.chat.completions.create(
             model=settings.groq_model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": "You are a JSON-only response bot. Output raw JSON with no markdown formatting, no code blocks, no explanation. Just the JSON object."},
+                {"role": "user", "content": prompt},
+            ],
             temperature=0.3,
             max_tokens=400,
         )
-        content = response.choices[0].message.content.strip()
+        content = response.choices[0].message.content or ""
+        content = content.strip()
 
-        import json
+        logger.debug("Raw LLM response: %s", content[:300])
 
-        content = content.removeprefix("```json").removesuffix("```").strip()
-        result = json.loads(content)
+        result = _extract_json(content)
 
         if result.get("sentiment") not in SENTIMENTS:
             result["sentiment"] = "neutral"

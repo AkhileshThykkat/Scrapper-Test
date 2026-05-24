@@ -1,0 +1,49 @@
+Absolutely love this platform! We integrated it with our Shopify store and now abandoned cart recovery via WhatsApp has boosted our revenue by 22%. The broadcast feature is incredibly powerful - we can segment customers and send personalized offers. Best investment we made this year.
+---
+The onboarding experience was terrible. It took us 3 weeks to get our WhatsApp Business API approved and the support team kept giving us copy-paste responses. Nobody seemed to understand our use case. We almost switched to a competitor before things finally got sorted.
+---
+Decent tool for the price. The chatbot builder is drag-and-drop which is nice, but it crashes sometimes when you have more than 15 nodes in a flow. Also the analytics dashboard is very basic - can't even filter by date range properly. Would be 5 stars if they fixed these issues.
+---
+WORST experience ever. We were charged for 3 months after cancelling our subscription. Their billing support is non-existent - I've sent 12 emails and only got one generic reply. Had to dispute through my bank. Stay away if you value your money.
+---
+We've been using this for our real estate business for 8 months now. The template message approval process is smooth, and the API documentation is well-written. Our developers integrated it in just 2 days. The webhook reliability is solid - haven't missed a single callback.
+---
+The pricing is way too high for small businesses. We're a team of 5 and paying $150/month for features we don't even use. The basic plan should include at least chatbot flows - right now you have to upgrade to the $99 plan just to automate a simple welcome message. Competitors offer this for free.
+---
+Great customer support! Had an issue with our message templates getting rejected by Meta and the team helped us rewrite them and got approval within 24 hours. The live chat support is available even on weekends which is rare for Indian SaaS companies.
+---
+The platform goes down at least once a week during peak hours (IST evening 6-9 PM). Last month we lost approximately 200 customer conversations because of a 4-hour outage. For a communication platform, this level of unreliability is simply unacceptable. We're actively looking for alternatives.
+---
+Good product overall but the mobile app is a joke. It's basically a webview wrapper that logs you out every few hours. Can't even send images from the app properly. The desktop version works fine though. Please invest in a proper native mobile app.
+---
+We switched from Interakt to this platform and the migration was seamless. The team even helped us transfer our existing contacts and conversation history. The Green Tick verification process was handled entirely by their team. Couldn't be happier with the switch.
+---
+The broadcast feature has a frustrating limitation - you can only send to 1000 contacts per batch. For our e-commerce store with 50,000+ contacts, this means we have to manually create 50 separate broadcasts. There's no scheduling or queue system. This should be a basic feature for any marketing platform.
+---
+I'm confused about their data privacy practices. When I asked where our customer data is stored and whether it's encrypted, the support team couldn't give me a clear answer. For a platform that handles sensitive customer conversations, this is a red flag. GDPR compliance seems like an afterthought.
+---
+The AI chatbot feature they launched recently is genuinely impressive. It handles about 70% of our customer queries without human intervention. The training interface is intuitive - you just upload your FAQ document and it learns. Saved us from hiring 2 additional support agents.
+---
+Terrible API rate limits. We hit the 60 messages/minute cap constantly during our flash sales. When you're running a sale and thousands of customers are messaging, you need enterprise-grade throughput, not these hobbyist limits. Upgrading to their enterprise plan costs 5x more.
+---
+Setup was incredibly easy. Connected our WhatsApp Business Account in under 30 minutes, created our first chatbot flow in an hour, and had our first automated campaign running by end of day. The UI is clean and intuitive - even our non-technical marketing team can use it without training.
+---
+The reporting is laughably bad. No cohort analysis, no funnel tracking, no A/B testing for messages. You can see basic delivery/read rates but nothing actionable. We have to export data to Google Sheets and build our own dashboards. For the price they charge, this is embarrassing.
+---
+We run a healthcare clinic and the appointment booking bot has reduced our no-show rate by 35%. Automated reminders via WhatsApp have 95% open rates compared to 20% for SMS. The multi-language support (Hindi, Tamil, English) works perfectly for our patient base.
+---
+The contact management is extremely limited. No custom fields, no tags, no proper segmentation beyond basic filters. We can't create dynamic lists based on customer behavior. Every serious CRM has these features - calling yourself a "CRM" without them is misleading.
+---
+Been using it for 2 years and the product has improved massively. The team ships updates every 2 weeks and actually listens to feature requests. They even built a custom integration for our ERP system. This kind of customer-centric approach is what keeps us loyal.
+---
+The WhatsApp Cloud API migration was a nightmare. They gave us 2 weeks notice that on-premise API was being deprecated and the migration documentation was full of errors. We had 3 days of downtime during the switch. Communication about breaking changes needs to be WAY better.
+---
+Pricing increased by 40% with zero notice. We logged in one morning and our invoice was $210 instead of $150. No email, no in-app notification, nothing. When we complained, they said it was mentioned in a blog post. That's not how you treat customers who've been with you for over a year.
+---
+The click-to-WhatsApp ads integration works beautifully. We connect our Meta Ads to the platform and leads are automatically captured, tagged, and routed to the right sales agent. Our cost per lead dropped by 45% compared to traditional landing pages. Game changer for our marketing team.
+---
+Can't believe there's no proper team collaboration feature in 2024. Only one person can handle a conversation at a time, there's no internal notes, no @mention for teammates, no conversation transfer between departments. We're a 20-person team and this is a dealbreaker.
+---
+The catalog feature for our food delivery business is perfect. Customers browse our menu right inside WhatsApp, add items to cart, and checkout - all without leaving the chat. Our order volume through WhatsApp increased by 3x since we started using this. Integration with Razorpay for payments is seamless.
+---
+Support response time has degraded significantly over the last 6 months. We used to get responses within 30 minutes, now it takes 24-48 hours. Our dedicated account manager was reassigned and the replacement doesn't understand our setup at all. Feeling like just another ticket number now.

@@ -4,10 +4,13 @@ from collections import Counter
 from openai import AsyncOpenAI
 
 from app.core.config import settings
+from app.services.ai.analyzer import _extract_json
 
 logger = logging.getLogger(__name__)
 
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+
+_SYSTEM_MSG = {"role": "system", "content": "You are a JSON-only response bot. Output raw JSON with no markdown formatting, no code blocks, no explanation. Just the JSON object."}
 
 
 async def generate_company_insights(
@@ -151,13 +154,12 @@ async def _analyze_pain_points(
     try:
         response = await client.chat.completions.create(
             model=settings.groq_model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[_SYSTEM_MSG, {"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=1500,
         )
-        content = response.choices[0].message.content.strip()
-        content = content.removeprefix("```json").removesuffix("```").strip()
-        return json.loads(content)
+        content = response.choices[0].message.content or ""
+        return _extract_json(content)
     except Exception as e:
         logger.error("Pain point analysis failed: %s", e, exc_info=True)
         return {
@@ -249,13 +251,12 @@ async def _combine_summaries(company_name: str, chunk_summaries: list[str]) -> d
     try:
         response = await client.chat.completions.create(
             model=settings.groq_model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[_SYSTEM_MSG, {"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=800,
         )
-        content = response.choices[0].message.content.strip()
-        content = content.removeprefix("```json").removesuffix("```").strip()
-        return json.loads(content)
+        content = response.choices[0].message.content or ""
+        return _extract_json(content)
     except Exception as e:
         logger.error("Combined summarization failed: %s", e, exc_info=True)
         return {
@@ -282,13 +283,12 @@ async def _extract_structured(company_name: str, summary: str) -> dict:
     try:
         response = await client.chat.completions.create(
             model=settings.groq_model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[_SYSTEM_MSG, {"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=800,
         )
-        content = response.choices[0].message.content.strip()
-        content = content.removeprefix("```json").removesuffix("```").strip()
-        return json.loads(content)
+        content = response.choices[0].message.content or ""
+        return _extract_json(content)
     except Exception as e:
         logger.error("Structured extraction failed: %s", e, exc_info=True)
         return {

@@ -1,0 +1,393 @@
+{
+  "individual_analyses": [
+    {
+      "id": 1,
+      "review_text": "Absolutely love this platform! We integrated it with our Shopify store and now abandoned cart recovery via WhatsApp has boosted our revenue by 22%. The broadcast feature is incredibly powerful - we can segment customers and send personalized offers. Best investment we made this year.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Features",
+      "short_summary": "WhatsApp CRM boosts revenue by 22%",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 2,
+      "review_text": "The onboarding experience was terrible. It took us 3 weeks to get our WhatsApp Business API approved and the support team kept giving us copy-paste responses. Nobody seemed to understand our use case. We almost switched to a competitor before things finally got sorted.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Onboarding",
+      "short_summary": "Terrible onboarding experience with WhatsApp API",
+      "pain_points": [
+        "slow WhatsApp Business API approval",
+        "unhelpful copy-paste support responses"
+      ],
+      "severity": 4
+    },
+    {
+      "id": 3,
+      "review_text": "Decent tool for the price. The chatbot builder is drag-and-drop which is nice, but it crashes sometimes when you have more than 15 nodes in a flow. Also the analytics dashboard is very basic - can't even filter by date range properly. Would be 5 stars if they fixed these issues.",
+      "rating": 3,
+      "sentiment": "mixed",
+      "category": "Features",
+      "short_summary": "Decent tool with some limitations",
+      "pain_points": [
+        "chatbot builder crashes",
+        "basic analytics dashboard"
+      ],
+      "severity": 3
+    },
+    {
+      "id": 4,
+      "review_text": "WORST experience ever. We were charged for 3 months after cancelling our subscription. Their billing support is non-existent - I've sent 12 emails and only got one generic reply. Had to dispute through my bank. Stay away if you value your money.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Customer Support",
+      "short_summary": "Bad experience with billing support",
+      "pain_points": [
+        "non-existent billing support",
+        "unresponsive to emails",
+        "unauthorized charges"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 5,
+      "review_text": "We've been using this for our real estate business for 8 months now. The template message approval process is smooth, and the API documentation is well-written. Our developers integrated it in just 2 days. The webhook reliability is solid - haven't missed a single callback.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Ease of Use",
+      "short_summary": "Smooth integration and reliable service",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 6,
+      "review_text": "The pricing is way too high for small businesses. We're a team of 5 and paying $150/month for features we don't even use. The basic plan should include at least chatbot flows - right now you have to upgrade to the $99 plan just to automate a simple welcome message. Competitors offer this for free.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Pricing",
+      "short_summary": "High pricing for small businesses",
+      "pain_points": [
+        "pricing too high for small businesses",
+        "basic plan lacks chatbot flows"
+      ],
+      "severity": 4
+    },
+    {
+      "id": 7,
+      "review_text": "Great customer support! Had an issue with our message templates getting rejected by Meta and the team helped us rewrite them and got approval within 24 hours. The live chat support is available even on weekends which is rare for Indian SaaS companies.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Customer Support",
+      "short_summary": "Great customer support and issue resolution",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 8,
+      "review_text": "The platform goes down at least once a week during peak hours (IST evening 6-9 PM). Last month we lost approximately 200 customer conversations because of a 4-hour outage. For a communication platform, this level of unreliability is simply unacceptable. We're actively looking for alternatives.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Reliability",
+      "short_summary": "Frequent outages cause lost conversations",
+      "pain_points": [
+        "frequent outages",
+        "long downtime",
+        "lost customer conversations"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 9,
+      "review_text": "Good product overall but the mobile app is a joke. It's basically a webview wrapper that logs you out every few hours. Can't even send images from the app properly. The desktop version works fine though. Please invest in a proper native mobile app.",
+      "rating": 3,
+      "sentiment": "mixed",
+      "category": "UI/UX",
+      "short_summary": "Good product but mobile app issues",
+      "pain_points": [
+        "mobile app logs out frequently",
+        "cannot send images properly",
+        "non-native mobile app"
+      ],
+      "severity": 4
+    },
+    {
+      "id": 10,
+      "review_text": "We switched from Interakt to this platform and the migration was seamless. The team even helped us transfer our existing contacts and conversation history. The Green Tick verification process was handled entirely by their team. Couldn't be happier with the switch.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Onboarding",
+      "short_summary": "Seamless migration to new platform",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 11,
+      "review_text": "The broadcast feature has a frustrating limitation - you can only send to 1000 contacts per batch. For our e-commerce store with 50,000+ contacts, this means we have to manually create 50 separate broadcasts. There's no scheduling or queue system. This should be a basic feature for any marketing platform.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Features",
+      "short_summary": "Broadcast feature has frustrating limitations",
+      "pain_points": [
+        "batch size limitation",
+        "no scheduling feature",
+        "no queue system"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 12,
+      "review_text": "I'm confused about their data privacy practices. When I asked where our customer data is stored and whether it's encrypted, the support team couldn't give me a clear answer. For a platform that handles sensitive customer conversations, this is a red flag. GDPR compliance seems like an afterthought.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Customer Support",
+      "short_summary": "Unclear data privacy practices raise concerns",
+      "pain_points": [
+        "unclear data storage",
+        "lack of encryption information",
+        "GDPR compliance issues"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 13,
+      "review_text": "The AI chatbot feature they launched recently is genuinely impressive. It handles about 70% of our customer queries without human intervention. The training interface is intuitive - you just upload your FAQ document and it learns. Saved us from hiring 2 additional support agents.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Features",
+      "short_summary": "AI chatbot handles customer queries efficiently",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 14,
+      "review_text": "Terrible API rate limits. We hit the 60 messages/minute cap constantly during our flash sales. When you're running a sale and thousands of customers are messaging, you need enterprise-grade throughput, not these hobbyist limits. Upgrading to their enterprise plan costs 5x more.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "WhatsApp API Issues",
+      "short_summary": "Terrible API rate limits during sales",
+      "pain_points": [
+        "API rate limits too low",
+        "upgrading to enterprise plan too expensive"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 15,
+      "review_text": "Setup was incredibly easy. Connected our WhatsApp Business Account in under 30 minutes, created our first chatbot flow in an hour, and had our first automated campaign running by end of day. The UI is clean and intuitive - even our non-technical marketing team can use it without training.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Ease of Use",
+      "short_summary": "Easy setup and intuitive UI",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 16,
+      "review_text": "The reporting is laughably bad. No cohort analysis, no funnel tracking, no A/B testing for messages. You can see basic delivery/read rates but nothing actionable. We have to export data to Google Sheets and build our own dashboards. For the price they charge, this is embarrassing.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Features",
+      "short_summary": "Lack of analytics features",
+      "pain_points": [
+        "no cohort analysis",
+        "no funnel tracking",
+        "no A/B testing",
+        "basic reporting"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 17,
+      "review_text": "We run a healthcare clinic and the appointment booking bot has reduced our no-show rate by 35%. Automated reminders via WhatsApp have 95% open rates compared to 20% for SMS. The multi-language support (Hindi, Tamil, English) works perfectly for our patient base.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Performance",
+      "short_summary": "WhatsApp bot reduces no-show rate",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 18,
+      "review_text": "The contact management is extremely limited. No custom fields, no tags, no proper segmentation beyond basic filters. We can't create dynamic lists based on customer behavior. Every serious CRM has these features - calling yourself a \"CRM\" without them is misleading.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Features",
+      "short_summary": "Limited contact management features",
+      "pain_points": [
+        "no custom fields",
+        "no tags",
+        "no proper segmentation",
+        "can't create dynamic lists"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 19,
+      "review_text": "Been using it for 2 years and the product has improved massively. The team ships updates every 2 weeks and actually listens to feature requests. They even built a custom integration for our ERP system. This kind of customer-centric approach is what keeps us loyal.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Customer Support",
+      "short_summary": "Excellent customer support and updates",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 20,
+      "review_text": "The WhatsApp Cloud API migration was a nightmare. They gave us 2 weeks notice that on-premise API was being deprecated and the migration documentation was full of errors. We had 3 days of downtime during the switch. Communication about breaking changes needs to be WAY better.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "WhatsApp API Issues",
+      "short_summary": "Difficult WhatsApp Cloud API migration",
+      "pain_points": [
+        "short notice period",
+        "inaccurate migration documentation",
+        "downtime during switch"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 21,
+      "review_text": "Pricing increased by 40% with zero notice. We logged in one morning and our invoice was $210 instead of $150. No email, no in-app notification, nothing. When we complained, they said it was mentioned in a blog post. That's not how you treat customers who've been with you for over a year.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Pricing",
+      "short_summary": "Unexpected 40% price increase",
+      "pain_points": [
+        "no notice of price change",
+        "poor communication",
+        "unfair treatment of loyal customers"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 22,
+      "review_text": "The click-to-WhatsApp ads integration works beautifully. We connect our Meta Ads to the platform and leads are automatically captured, tagged, and routed to the right sales agent. Our cost per lead dropped by 45% compared to traditional landing pages. Game changer for our marketing team.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Features",
+      "short_summary": "Click-to-WhatsApp ads integration works beautifully",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 23,
+      "review_text": "Can't believe there's no proper team collaboration feature in 2024. Only one person can handle a conversation at a time, there's no internal notes, no @mention for teammates, no conversation transfer between departments. We're a 20-person team and this is a dealbreaker.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Features",
+      "short_summary": "Lack of team collaboration features",
+      "pain_points": [
+        "no team collaboration",
+        "no internal notes",
+        "no @mention",
+        "no conversation transfer"
+      ],
+      "severity": 5
+    },
+    {
+      "id": 24,
+      "review_text": "The catalog feature for our food delivery business is perfect. Customers browse our menu right inside WhatsApp, add items to cart, and checkout - all without leaving the chat. Our order volume through WhatsApp increased by 3x since we started using this. Integration with Razorpay for payments is seamless.",
+      "rating": 5,
+      "sentiment": "positive",
+      "category": "Features",
+      "short_summary": "Catalog feature boosts order volume",
+      "pain_points": [],
+      "severity": 0
+    },
+    {
+      "id": 25,
+      "review_text": "Support response time has degraded significantly over the last 6 months. We used to get responses within 30 minutes, now it takes 24-48 hours. Our dedicated account manager was reassigned and the replacement doesn't understand our setup at all. Feeling like just another ticket number now.",
+      "rating": 1,
+      "sentiment": "negative",
+      "category": "Customer Support",
+      "short_summary": "Poor support response time and account management",
+      "pain_points": [
+        "slow customer support response",
+        "lack of account manager understanding"
+      ],
+      "severity": 5
+    }
+  ],
+  "company_insights": {
+    "strengths": [
+      "ease of use",
+      "powerful broadcast feature",
+      "effective chatbot builder",
+      "catalog feature for e-commerce businesses",
+      "click-to-WhatsApp ads integration"
+    ],
+    "weaknesses": [
+      "poor onboarding experience",
+      "unresponsive customer support",
+      "high pricing",
+      "frequent outages",
+      "broadcast feature's 1000-contact limit",
+      "lack of custom fields for contact management",
+      "inadequate reporting"
+    ],
+    "feature_requests": [
+      "enhance the mobile app",
+      "increase API rate limits",
+      "add more advanced reporting and analytics"
+    ],
+    "overall_summary": "The overall sentiment of TestCRM reviews is negative, with users expressing frustration and disappointment with the platform's limitations and issues. Despite some positive reviews, the numerous complaints and weaknesses dominate the narrative. To improve, TestCRM should focus on addressing common themes and complaints, such as enhancing customer support and expanding features. By doing so, the platform can increase user satisfaction and loyalty, leading to a more positive overall sentiment.",
+    "pain_points": [
+      {
+        "pain_point": "Frequent outages and downtime",
+        "frequency": 1,
+        "severity_avg": 5.0,
+        "category": "Reliability",
+        "example_reviews": [
+          "The platform goes down at least once a week during peak hours",
+          "Last month we lost approximately 200 customer conversations because of a 4-hour outage"
+        ]
+      },
+      {
+        "pain_point": "Poor customer support and unresponsive team",
+        "frequency": 3,
+        "severity_avg": 5.0,
+        "category": "Customer Support",
+        "example_reviews": [
+          "Non-existent billing support",
+          "Support response time has degraded significantly over the last 6 months",
+          "Unresponsive to emails"
+        ]
+      },
+      {
+        "pain_point": "Limited features and functionality",
+        "frequency": 6,
+        "severity_avg": 4.2,
+        "category": "Features",
+        "example_reviews": [
+          "Chatbot builder crashes",
+          "Basic analytics dashboard",
+          "No team collaboration feature"
+        ]
+      },
+      {
+        "pain_point": "Pricing issues and lack of transparency",
+        "frequency": 2,
+        "severity_avg": 4.5,
+        "category": "Pricing",
+        "example_reviews": [
+          "Pricing too high for small businesses",
+          "No notice of price change"
+        ]
+      },
+      {
+        "pain_point": "Mobile app issues and limitations",
+        "frequency": 1,
+        "severity_avg": 4.0,
+        "category": "UI/UX",
+        "example_reviews": [
+          "Mobile app logs out frequently",
+          "Cannot send images properly"
+        ]
+      }
+    ],
+    "pain_point_summary": "The biggest customer pain points for TestCRM are frequent outages and downtime, poor customer support, limited features and functionality, pricing issues, and mobile app limitations. These issues reveal a lack of investment in reliability, customer support, and feature development, which can lead to customer frustration and churn. The frequency and severity of these pain points suggest that TestCRM needs to prioritize addressing these issues to improve customer satisfaction and retention.",
+    "negative_review_count": 15,
+    "total_review_count": 25
+  }
+}
