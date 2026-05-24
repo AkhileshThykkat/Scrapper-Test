@@ -6,6 +6,7 @@ celery_app = Celery(
     "review_intel",
     broker=settings.effective_celery_broker_url,
     backend=settings.effective_celery_result_backend,
+    include=["app.workers.tasks"],
 )
 
 celery_app.conf.update(

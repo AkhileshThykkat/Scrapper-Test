@@ -40,10 +40,13 @@ async def is_duplicate_review(
     if not reviewer_name and not review_text:
         return False
 
-    # Primary: content hash lookup (fast, indexed)
+    # Primary: content hash lookup (fast, indexed, scoped to company)
     content_hash = generate_content_hash(source, reviewer_name, review_text, review_date)
     result = await session.execute(
-        select(Review.id).where(Review.content_hash == content_hash).limit(1)
+        select(Review.id).where(
+            Review.company_id == company_id,
+            Review.content_hash == content_hash,
+        ).limit(1)
     )
     if result.scalar_one_or_none() is not None:
         return True
