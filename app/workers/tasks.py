@@ -14,7 +14,7 @@ from app.services.scraping.google_reviews import scrape_google_reviews
 from app.services.ai.analyzer import analyze_review_text, CATEGORIES, SENTIMENTS
 from app.services.embeddings.generator import generate_embedding
 from app.services.insights.generator import generate_company_insights
-from app.utils.dedup import is_duplicate_review
+from app.utils.dedup import is_duplicate_review, generate_content_hash
 from app.workers.celery_app import celery_app
 
 logger = logging.getLogger(__name__)
@@ -58,6 +58,13 @@ async def _scrape_reviews(self, company_id: int):
             if await is_duplicate_review(session, company_id, r):
                 continue
 
+            content_hash = generate_content_hash(
+                "google_maps",
+                r.get("reviewer_name"),
+                r.get("review_text"),
+                r.get("review_date"),
+            )
+
             review = Review(
                 company_id=company_id,
                 reviewer_name=r.get("reviewer_name"),
@@ -65,6 +72,8 @@ async def _scrape_reviews(self, company_id: int):
                 review_text=r.get("review_text"),
                 review_date=r.get("review_date"),
                 source="google_maps",
+                content_hash=content_hash,
+                is_processed=False,
             )
             session.add(review)
             stored_count += 1
@@ -86,14 +95,11 @@ def analyze_reviews_task(self, company_id: int):
 
 async def _analyze_reviews(self, company_id: int):
     async with async_session_factory() as session:
+        # Find unprocessed reviews (using is_processed flag instead of subquery)
         result = await session.execute(
             select(Review).where(
                 Review.company_id == company_id,
-                Review.id.notin_(
-                    select(ReviewAnalysis.review_id).where(
-                        ReviewAnalysis.review_id == Review.id
-                    )
-                ),
+                Review.is_processed == False,
             )
         )
         unanalyzed_reviews = result.scalars().all()
@@ -105,6 +111,7 @@ async def _analyze_reviews(self, company_id: int):
         analyzed_count = 0
         for review in unanalyzed_reviews:
             if not review.review_text:
+                review.is_processed = True
                 continue
 
             analysis = await analyze_review_text(review.review_text)
@@ -120,9 +127,12 @@ async def _analyze_reviews(self, company_id: int):
                 sentiment=analysis.get("sentiment"),
                 category=analysis.get("category"),
                 short_summary=analysis.get("short_summary"),
+                pain_points=analysis.get("pain_points", []),
+                severity=analysis.get("severity", 0),
                 embedding_vector=embedding,
             )
             session.add(review_analysis)
+            review.is_processed = True
             analyzed_count += 1
 
         await session.commit()
@@ -159,7 +169,13 @@ async def _generate_insights_for_company(session: AsyncSession, company_id: int)
         for r in reviews
     ]
     analyses_data = [
-        {"review_id": a.review_id, "sentiment": a.sentiment, "category": a.category}
+        {
+            "review_id": a.review_id,
+            "sentiment": a.sentiment,
+            "category": a.category,
+            "pain_points": a.pain_points or [],
+            "severity": a.severity or 0,
+        }
         for a in analyses
     ]
 
@@ -175,6 +191,10 @@ async def _generate_insights_for_company(session: AsyncSession, company_id: int)
         existing_insight.weaknesses = insights.get("weaknesses", [])
         existing_insight.feature_requests = insights.get("feature_requests", [])
         existing_insight.overall_summary = insights.get("overall_summary", "")
+        existing_insight.pain_points = insights.get("pain_points", [])
+        existing_insight.pain_point_summary = insights.get("pain_point_summary", "")
+        existing_insight.negative_review_count = insights.get("negative_review_count", 0)
+        existing_insight.total_review_count = insights.get("total_review_count", 0)
     else:
         insight = CompanyInsight(
             company_id=company_id,
@@ -182,6 +202,10 @@ async def _generate_insights_for_company(session: AsyncSession, company_id: int)
             weaknesses=insights.get("weaknesses", []),
             feature_requests=insights.get("feature_requests", []),
             overall_summary=insights.get("overall_summary", ""),
+            pain_points=insights.get("pain_points", []),
+            pain_point_summary=insights.get("pain_point_summary", ""),
+            negative_review_count=insights.get("negative_review_count", 0),
+            total_review_count=insights.get("total_review_count", 0),
         )
         session.add(insight)
 

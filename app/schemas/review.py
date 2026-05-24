@@ -11,6 +11,7 @@ class ReviewResponse(BaseModel):
     review_date: str | None = None
     source: str
     scraped_at: datetime
+    is_processed: bool = False
 
     model_config = {"from_attributes": True}
 

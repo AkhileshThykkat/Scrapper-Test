@@ -13,6 +13,8 @@ class ReviewAnalysis(Base):
     sentiment: Mapped[str | None] = mapped_column(String(32))
     category: Mapped[str | None] = mapped_column(String(64))
     short_summary: Mapped[str | None] = mapped_column(Text)
+    pain_points: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    severity: Mapped[int | None] = mapped_column(Integer, default=0)
     embedding_vector: Mapped[list | None] = mapped_column(JSON, nullable=True)
     analyzed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
