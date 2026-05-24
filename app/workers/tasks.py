@@ -128,8 +128,7 @@ async def _analyze_reviews(self, company_id: int):
         await session.commit()
         logger.info("Analyzed %d reviews for company %d", analyzed_count, company_id)
 
-        insights_task = _generate_insights_for_company(session, company_id)
-        asyncio.create_task(insights_task)
+        await _generate_insights_for_company(session, company_id)
 
         return {"company_id": company_id, "analyzed": analyzed_count}
 

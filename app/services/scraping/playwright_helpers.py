@@ -1,54 +1,44 @@
 import asyncio
 import random
+from contextlib import asynccontextmanager
 from playwright.async_api import async_playwright, Browser, BrowserContext, Page
 
 from app.core.config import settings
 
-_browser: Browser | None = None
-_context: BrowserContext | None = None
 
-
-async def get_browser_context() -> BrowserContext:
-    global _browser, _context
-    if _context is not None and _context.is_connected():
-        return _context
-    if _browser is not None and _browser.is_connected():
-        _context = await _browser.new_context(
-            viewport={"width": 1280, "height": 800},
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            ),
-        )
-        return _context
-    _playwright = await async_playwright().start()
-    _browser = await _playwright.chromium.launch(
+@asynccontextmanager
+async def get_browser_context():
+    """
+    Context manager that creates a fresh Playwright browser + context for each
+    scraping session and ensures cleanup. This replaces the broken global
+    singleton pattern which failed in Celery workers because each task
+    creates/destroys its own asyncio event loop via _run_async().
+    """
+    playwright = await async_playwright().start()
+    browser = await playwright.chromium.launch(
         headless=True,
         args=[
             "--disable-blink-features=AutomationControlled",
             "--no-sandbox",
+            "--disable-dev-shm-usage",
         ],
     )
-    _context = await _browser.new_context(
-        viewport={"width": 1280, "height": 800},
+    context = await browser.new_context(
+        viewport={"width": 1280, "height": 900},
         user_agent=(
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
             "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/120.0.0.0 Safari/537.36"
+            "Chrome/125.0.0.0 Safari/537.36"
         ),
+        locale="en-US",
+        timezone_id="America/New_York",
     )
-    return _context
-
-
-async def close_browser():
-    global _browser, _context
-    if _context is not None:
-        await _context.close()
-        _context = None
-    if _browser is not None:
-        await _browser.close()
-        _browser = None
+    try:
+        yield context
+    finally:
+        await context.close()
+        await browser.close()
+        await playwright.stop()
 
 
 async def human_delay(min_s: float = None, max_s: float = None):
@@ -61,7 +51,11 @@ async def random_scroll(page: Page, container_selector: str | None = None):
     delta = random.randint(300, 800)
     if container_selector:
         await page.evaluate(
-            f"document.querySelector('{container_selector}').scrollBy(0, {delta});"
+            """(selector) => {
+                const el = document.querySelector(selector);
+                if (el) el.scrollBy(0, %d);
+            }""" % delta,
+            container_selector,
         )
     else:
         await page.evaluate(f"window.scrollBy(0, {delta});")
