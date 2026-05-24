@@ -23,4 +23,5 @@ dependencies = [
     "beautifulsoup4",
     "lxml",
     "httpx",
+    "psycopg2-binary>=2.9.12",
 ]
