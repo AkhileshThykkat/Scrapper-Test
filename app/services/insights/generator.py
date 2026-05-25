@@ -156,7 +156,7 @@ async def _analyze_pain_points(
             model=settings.groq_model,
             messages=[_SYSTEM_MSG, {"role": "user", "content": prompt}],
             temperature=0.3,
-            max_tokens=1500,
+            max_tokens=3000,
         )
         content = response.choices[0].message.content or ""
         return _extract_json(content)

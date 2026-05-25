@@ -1,8 +1,11 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 from app.api.routes import router
+from app.api.ui_routes import router as ui_router
 from app.db.base import Base
 from app.db.session import engine
 from app.utils.log_config import setup_logging
@@ -26,3 +29,10 @@ app = FastAPI(
 )
 
 app.include_router(router, prefix="/api/v1")
+app.include_router(ui_router, prefix="/api/v1")
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+@app.get("/")
+async def root():
+    return FileResponse("app/static/index.html")

@@ -16,7 +16,7 @@ async def get_browser_context():
     """
     playwright = await async_playwright().start()
     browser = await playwright.chromium.launch(
-        headless=True,
+        headless=False,
         args=[
             "--disable-blink-features=AutomationControlled",
             "--no-sandbox",
